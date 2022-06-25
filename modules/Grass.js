@@ -1,5 +1,5 @@
-var LiveForm = require("./LiveForm");
-var random = require("./random");
+var LiveForm = require("./LiveForm.js");
+var random = require("./random.js");
 
 
 module.exports = class Grass extends LiveForm {
@@ -28,7 +28,6 @@ module.exports = class Grass extends LiveForm {
         let emptyCells = this.chooseCell(0);
         let newCell = random(emptyCells);
         if (newCell && this.multiply >= 2) {
-            grassHashiv++;
             let x = newCell[0];
             let y = newCell[1];
             matrix[y][x] = 1;

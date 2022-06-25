@@ -3,7 +3,9 @@ weath = "winter"
 //! Requiring modules  --  START
 var Grass = require("./modules/Grass.js");
 var GrassEater = require("./modules/GrassEater.js");
-let random = require('./modules/random');
+let random = require('./modules/random.js');
+var fs = require('fs');
+    
 //! Requiring modules  --  END
 
 
@@ -74,7 +76,7 @@ setInterval(weather, 5000);
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var io = require("socket.io")(server);
 app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('index.html');
@@ -128,12 +130,9 @@ function game() {
 setInterval(game, 1000)
 
 //// Add event
-function kill() {
+function kill1() {
     grassArr = [];
     grassEaterArr = []
-    meatEaterArr = []
-    allEaterArr = []
-    hunterArr = []
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             matrix[y][x] = 0;
@@ -142,7 +141,7 @@ function kill() {
 }
 io.on('connection', function (socket) {
     creatingObjects();
-    socket.on("kill", kill);
+    socket.on("kill", kill1);
 });
 ////   Create static Json
 var statistics = {};

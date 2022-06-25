@@ -1,8 +1,7 @@
-
+var socket = io();
 //! Setup function fires automatically
 function setup() {
     var weath = 'winter'
-    var socket = io();
 
     var side = 30;
 
