@@ -1,6 +1,6 @@
-# Programming 3 example (by ananun)
+# Programming 3 final task
 
-This is code example of Tumos project GameOfLife with server side programming.
+This is final task of Tumos project GameOfLife with server side programming.
 
 ## Installation
 

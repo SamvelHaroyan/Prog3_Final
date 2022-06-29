@@ -5,55 +5,55 @@ var Grass = require("./modules/Grass.js");
 var GrassEater = require("./modules/GrassEater.js");
 let random = require('./modules/random.js');
 var fs = require('fs');
-    
+
 //! Requiring modules  --  END
 
 
 //! Setting global arrays  --  START
 grassArr = [];
 grassEaterArr = [];
-matrix = [];
+Matrix = [];
 //! Setting global arrays  -- END
 
 
 
 
-//! Creating MATRIX -- START
-function matrixGenerator(matrixSize, grass, grassEater, grassEaterEater, waterArr, fireArr) {
-    for (let i = 0; i < matrixSize; i++) {
-        matrix[i] = [];
-        for (let o = 0; o < matrixSize; o++) {
-            matrix[i][o] = 0;
+//! Creating Matrix -- START
+function MatrixGenerator(MatrixSize, grass, grassEater, grassEaterEater, waterArr, fireArr) {
+    for (let i = 0; i < MatrixSize; i++) {
+        Matrix[i] = [];
+        for (let o = 0; o < MatrixSize; o++) {
+            Matrix[i][o] = 0;
         }
     }
     for (let i = 0; i < grass; i++) {
-        let customX = Math.floor(random(matrixSize)); // 0-9
-        let customY = Math.floor(random(matrixSize)); // 4
-        matrix[customY][customX] = 1;
+        let customX = Math.floor(random(MatrixSize)); // 0-9
+        let customY = Math.floor(random(MatrixSize)); // 4
+        Matrix[customY][customX] = 1;
     }
     for (let i = 0; i < grassEater; i++) {
-        let customX = Math.floor(random(matrixSize));
-        let customY = Math.floor(random(matrixSize));
-        matrix[customY][customX] = 2;
+        let customX = Math.floor(random(MatrixSize));
+        let customY = Math.floor(random(MatrixSize));
+        Matrix[customY][customX] = 2;
     }
     for (let i = 0; i < grassEaterEater; i++) {
-        let customX = Math.floor(random(matrixSize));
-        let customY = Math.floor(random(matrixSize));
-        matrix[customY][customX] = 3;
+        let customX = Math.floor(random(MatrixSize));
+        let customY = Math.floor(random(MatrixSize));
+        Matrix[customY][customX] = 3;
     }
     for (let i = 0; i < waterArr; i++) {
-        let customX = Math.floor(random(matrixSize));
-        let customY = Math.floor(random(matrixSize));
-        matrix[customY][customX] = 4;
+        let customX = Math.floor(random(MatrixSize));
+        let customY = Math.floor(random(MatrixSize));
+        Matrix[customY][customX] = 4;
     }
     for (let i = 0; i < fireArr; i++) {
-        let customX = Math.floor(random(matrixSize));
-        let customY = Math.floor(random(matrixSize));
-        matrix[customY][customX] = 5;
+        let customX = Math.floor(random(MatrixSize));
+        let customY = Math.floor(random(MatrixSize));
+        Matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(20, 1, 1);
-//! Creating MATRIX -- END
+MatrixGenerator(20, 1, 1);
+//! Creating Matrix -- END
 
 function weather() {
     if (weath == "winter") {
@@ -87,12 +87,12 @@ server.listen(3000);
 
 
 function creatingObjects() {
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 2) {
+    for (var y = 0; y < Matrix.length; y++) {
+        for (var x = 0; x < Matrix[y].length; x++) {
+            if (Matrix[y][x] == 2) {
                 var grassEater = new GrassEater(x, y);
                 grassEaterArr.push(grassEater);
-            } else if (matrix[y][x] == 1) {
+            } else if (Matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
             }
@@ -102,12 +102,12 @@ function creatingObjects() {
 
 function game() {
     if (grassArr[0] !== undefined) {
-        if(weath != 'autumn') {
+        if (weath != 'autumn') {
             for (var i in grassArr) {
                 grassArr[i].mul();
             }
         }
-        
+
     }
     if (grassEaterArr[0] !== undefined) {
         for (var i in grassEaterArr) {
@@ -117,7 +117,7 @@ function game() {
 
     //! Object to send
     let sendData = {
-        matrix: matrix,
+        Matrix: Matrix,
         grassCounter: grassArr.length
     }
 
@@ -133,9 +133,9 @@ setInterval(game, 1000)
 function kill1() {
     grassArr = [];
     grassEaterArr = []
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            matrix[y][x] = 0;
+    for (var y = 0; y < Matrix.length; y++) {
+        for (var x = 0; x < Matrix[y].length; x++) {
+            Matrix[y][x] = 0;
         }
     }
 }
