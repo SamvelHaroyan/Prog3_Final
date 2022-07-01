@@ -3,14 +3,12 @@ var socket = io();
 //! Setup function fires automatically
 function setup() {
     var weath = 'winter'
-
-    var side = 30;
-
+    var side = 15;
     var Matrix = [];
-
     //! Getting DOM objects (HTML elements)
     let grassCountElement = document.getElementById('grassCount');
     let grassEaterCountElement = document.getElementById('grassEaterCount');
+    let PredatorCountElement = document.getElementById('PredatorCount');
 
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
 
@@ -22,45 +20,51 @@ function setup() {
         //! after getting data pass it to Matrix variable
         Matrix = data.Matrix;
         grassCountElement.innerText = data.grassCounter;
-        //! Every time it creates new Canvas woth new Matrix size
-        createCanvas(Matrix[0].length * side, Matrix.length * side)
-        //! clearing background by setting it to new grey color
-        background('#acacac');
-        //! Draw grassCount and grassEaterCount to HTML (use DOM objects to update information, yes, and use .innerText <- function)
+        grassEaterCountElement.innerText = data.grassEaterCounter;
+        PredatorCountElement.innerText = data.PredatorCounter;
 
-        //! Drawing and coloring RECTs
+
+        createCanvas(Matrix[0].length * side, Matrix.length * side)
+        background('#acacac');
+
         for (var i = 0; i < Matrix.length; i++) {
             for (var j = 0; j < Matrix[i].length; j++) {
                 if (Matrix[i][j] == 1) {
                     if (weath == "spring") {
-                        fill("green")
+                        fill("lime")
                     }
                     else if (weath == "summer") {
-                        fill("black");
+                        fill("green");
                     }
                     else if (weath == "winter") {
                         fill("white")
                     }
                     else if (weath == "autumn") {
-                        fill("#4dffa6")
+                        fill("braun")
                     }
-                    rect(j * side, i * side, side, side);
-                } else if (Matrix[i][j] == 2) {
-                    fill("orange");
-                    rect(j * side, i * side, side, side);
-                } else if (Matrix[i][j] == 0) {
+                } 
+                else if (Matrix[i][j] == 2) {
+                    fill("yellow");
+                } 
+                else if (Matrix[i][j] == 0) {
                     fill('#acacac');
-                    rect(j * side, i * side, side, side);
-                } else if (Matrix[i][j] == 3) {
+                } 
+                else if (Matrix[i][j] == 3) {
                     fill('red');
-                    rect(j * side, i * side, side, side);
-                } else if (Matrix[i][j] == 4) {
+                } 
+                else if (Matrix[i][j] == 4) {
                     fill('blue');
-                    rect(j * side, i * side, side, side);
-                } else if (Matrix[i][j] == 5) {
-                    fill('yellow');
-                    rect(j * side, i * side, side, side);
+                } 
+                else if (Matrix[i][j] == 5) {
+                    fill('black');
                 }
+                else if (Matrix[i][j] == 6) {
+                    fill("orange");
+                }
+                else if (Matrix[i][j] == 7) {
+                    fill("aqua");
+                }
+                rect(j * side, i * side, side, side);
             }
         }
     }
@@ -68,4 +72,7 @@ function setup() {
 
 function kill() {
     socket.emit("kill")
+}
+function arenaCloser() {
+    socket.emit("arenaCloser")
 }
