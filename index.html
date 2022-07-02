@@ -17,7 +17,7 @@
         }
 
         h1 {
-            padding: 20px;
+            padding: 10px;
             text-align: center;
         }
 
@@ -44,27 +44,57 @@
             <tr>
                 <th scope="row">1</th>
                 <td scope="row" style="background-color:green;"></td>
-                <td>Կանաչը խոտն է, որը բազմանում է 3 ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ ուտում է "arenaCloser"-ը, կամ նրան կոխկրտում է գիշատիչը</td>
+                <td>Կանաչը խոտն է, որը բազմանում է 3 ցիկլը մեկ,մահանում է երբ նրան ուտում է խոտակերը, կամ ուտում է
+                    "Arena Closer"-ը, կամ նրան կոխկրտում է գիշատիչը</td>
                 <td id="grassCount"></td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td scope="row" style="background-color:yellow;"></td>
-                <td>Դեղինը խոտակերն է, որը բազմանում է N հատ խոտ ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
-                    երբ նրան ուտում է գիշատիչը, կամ երբ նրան այրում է կրակը:</td>
+                <td>Դեղինը խոտակերն է, որը բազմանում է 3 հատ խոտ ուտելուց հետո և մահանում է 10 հատ չուտելուց հետո, կամ
+                    երբ նրան ուտում է գիշատիչը, կամ երբ նրան վերացնում է "Arena Closer"-ը:</td>
                 <td id="grassEaterCount"></td>
             </tr>
             <tr>
                 <th scope="row">3</th>
                 <td scope="row" style="background-color:red;"></td>
-                <td>Կարմիրը գիշատիչն է է, որը բազմանում է N հատ խոտակեր ուտելուց հետո և մահանում է N հատ չուտելուց հետո, կամ
-                    երբ նրան ուտում է որսորդը, կամ երբ նրան ուտում է "arenaCloser"-ը:</td>
+                <td>Կարմիրը գիշատիչն է, որը բազմանում է 3 հատ խոտակեր ուտելուց հետո և մահանում է
+                    երբ նրան ուտում է որսորդը, կամ երբ նրան վերացնում է "Arena Closer"-ը:</td>
                 <td id="PredatorCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td scope="row" style="background-color:blue;"></td>
+                <td>Կապույտը վիռուսն է, որը բազմանում է 10 ցիկլի ընթացքում և մահանում է երբ նրան ուտում է գիշատիչը ,
+                    կամ երբ նրան վերացնում է "Arena Closer"-ը:</td>
+                <td id="VirusCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td scope="row" style="background-color:black;"></td>
+                <td>Սևը էներգետիկն է, որը բազմանում է 14 ցիկլի ընթացքում և մահանում է երբ նրան ուտում է գիշատիչը
+                    տալով նրան էներգիա, նաև երբ նրան վերացնում է "Arena Closer"-ը:</td>
+                <td id="EnergetikCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td scope="row" style="background-color:orange;"></td>
+                <td>Գազարագույնը որսորդն է, որը բազմանում է 3 հատ գիշատիչ ուտելուց հետո և մահանում է երբ
+                    նրան վերացնում է "Arena Closer"-ը:
+                    Նա ակտիվանում է երբ խոտակերը ուտում է էներգետիկն։</td>
+                <td id="KillerCount"></td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td scope="row" style="background-color:aqua;"></td>
+                <td>"Arena Closer"-ը ստեղծված է դաշտում բոլորին վերացնելու համար ,նա ակտիվանում է կոճակը սեղմելուց հետո։
+                </td>
+                <td id="AssassinCount"></td>
             </tr>
         </tbody>
     </table>
     <button onclick="kill()">Kill them all</button>
-    <button onclick="arenaCloser()">Arena Closer</button>
+    <button onclick="interval()">Arena Closer</button>
     <script src="p5.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>

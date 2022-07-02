@@ -1,9 +1,11 @@
 var LivingCreature = require("./LivingCreature.js");
 var random = require("./random.js");
 
-module.exports = class Energetik extends LivingCreature {
+
+module.exports = class Virus extends LivingCreature {
     constructor(x, y) {
         super(x, y);
+        this.directions.push([this.x, this.y]);
     }
 
     getNewCoordinates() {
@@ -25,16 +27,17 @@ module.exports = class Energetik extends LivingCreature {
 
     mul() {
         this.multiply++;
-        let emptyCells = this.chooseCell(0);
-        let newCell = random(emptyCells);
-
-        if (newCell && this.multiply >= 14) {
-            let x = newCell[0];
-            let y = newCell[1];
-            Matrix[y][x] = 5;
-            let ener = new Energetik(x, y);
-            EnergetikArr.push(ener);
+        var Mul1 = this.chooseCell(0);
+        var Mul2 = this.chooseCell(1);
+        var CellsForMul = Mul1.concat(Mul2);
+        var MulCell = random(CellsForMul);
+        if (MulCell && this.multiply >= 10) {
+            var newX = MulCell[0];
+            var newY = MulCell[1];
+            Matrix[newY][newX] = 4;
+            var newVirus = new Virus(newX, newY);
+            VirusArr.push(newVirus);
             this.multiply = 0;
         }
     }
-}
+} 

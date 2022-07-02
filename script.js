@@ -9,6 +9,10 @@ function setup() {
     let grassCountElement = document.getElementById('grassCount');
     let grassEaterCountElement = document.getElementById('grassEaterCount');
     let PredatorCountElement = document.getElementById('PredatorCount');
+    let VirusCountElement = document.getElementById('VirusCount');
+    let EnergetikCountElement = document.getElementById('EnergetikCount');
+    let KillerCountElement = document.getElementById('KillerCount');
+    let AssassinCountElement = document.getElementById('AssassinCount');
 
     //! adding socket listener on "data" <-- name, after that fire 'drawCreatures' function 
 
@@ -22,7 +26,10 @@ function setup() {
         grassCountElement.innerText = data.grassCounter;
         grassEaterCountElement.innerText = data.grassEaterCounter;
         PredatorCountElement.innerText = data.PredatorCounter;
-
+        VirusCountElement.innerText = data.VirusCounter;
+        EnergetikCountElement.innerText = data.EnergetikCounter;
+        KillerCountElement.innerText = data.KillerCounter;
+        AssassinCountElement.innerText = data.AssassinCounter;
 
         createCanvas(Matrix[0].length * side, Matrix.length * side)
         background('#acacac');
@@ -40,21 +47,21 @@ function setup() {
                         fill("white")
                     }
                     else if (weath == "autumn") {
-                        fill("braun")
+                        fill("brown")
                     }
-                } 
+                }
                 else if (Matrix[i][j] == 2) {
                     fill("yellow");
-                } 
+                }
                 else if (Matrix[i][j] == 0) {
                     fill('#acacac');
-                } 
+                }
                 else if (Matrix[i][j] == 3) {
                     fill('red');
-                } 
+                }
                 else if (Matrix[i][j] == 4) {
                     fill('blue');
-                } 
+                }
                 else if (Matrix[i][j] == 5) {
                     fill('black');
                 }
@@ -75,4 +82,7 @@ function kill() {
 }
 function arenaCloser() {
     socket.emit("arenaCloser")
+}
+function interval() {
+    socket.emit("interval")
 }

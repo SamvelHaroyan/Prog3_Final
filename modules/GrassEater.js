@@ -1,16 +1,13 @@
 var LivingCreature = require("./LivingCreature");
-var Killer = require("./KillerClass");
+var Killer = require("./KillerClass.js");
 // var Energetik = require("./EnergetikClass");
 var random = require("./random.js");
-
-
 
 module.exports = class GrassEater extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.energy = 20;
     }
-
 
     getNewCoordinates() {
         this.directions = [
@@ -24,11 +21,10 @@ module.exports = class GrassEater extends LivingCreature {
             [this.x + 1, this.y + 1]
         ];
     }
-
     chooseCell(character) {
         this.getNewCoordinates();
         return super.chooseCell(character);
-    } 
+    }
 
     mul() {
         let emptyCells = this.chooseCell(0);
@@ -44,7 +40,7 @@ module.exports = class GrassEater extends LivingCreature {
             this.energy = 8;
         }
     }
-    
+
     eat() {
         var greenCells = this.chooseCell(1);
         let EatenGreenCell = random(greenCells)
@@ -101,7 +97,6 @@ module.exports = class GrassEater extends LivingCreature {
         }
     }
 
-
     move() {
         this.energy -= 2;
         let emptyCells = this.chooseCell(0);
@@ -119,9 +114,9 @@ module.exports = class GrassEater extends LivingCreature {
             this.die();
         }
     }
+
     die() {
         Matrix[this.y][this.x] = 0;
-
         for (let i in GrassEaterArr) {
             if (GrassEaterArr[i].x == this.x && GrassEaterArr[i].y == this.y) {
                 GrassEaterArr.splice(i, 1)

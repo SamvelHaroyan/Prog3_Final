@@ -1,7 +1,6 @@
 var LivingCreature = require("./LivingCreature.js");
 var random = require("./random.js");
 
-
 module.exports = class Killer extends LivingCreature {
     constructor(x, y) {
         super(x, y);
@@ -38,14 +37,16 @@ module.exports = class Killer extends LivingCreature {
             Matrix[this.y][this.x] = 0
             this.x = newX
             this.y = newY
-        } else if (GreenCell && this.energy >= 0) {
+        }
+        else if (GreenCell && this.energy >= 0) {
             var newX = GreenCell[0];
             var newY = GreenCell[1];
             Matrix[newY][newX] = Matrix[this.y][this.x]
-            Matrix[this.y][this.x] = 1
+            Matrix[this.y][this.x] = 0
             this.x = newX
             this.y = newY
-        } else {
+        }
+        else {
             this.die()
         }
     }
@@ -57,7 +58,6 @@ module.exports = class Killer extends LivingCreature {
             this.x = redCell[0];
             this.y = redCell[1];
             Matrix[this.y][this.x] = 6;
-
             this.energy += 5;
 
             for (let index = 0; index < PredatorArr.length; index++) {
@@ -74,6 +74,7 @@ module.exports = class Killer extends LivingCreature {
             this.move();
         }
     }
+
     mul() {
         var emptyCells = this.chooseCell(0);
         var emptyCellsGreen = this.chooseCell(1);
@@ -86,6 +87,7 @@ module.exports = class Killer extends LivingCreature {
             KillerArr.push(KillerNew);
         }
     }
+
     die() {
         Matrix[this.y][this.x] = 0;
         for (let index = 0; index < KillerArr.length; index++) {
